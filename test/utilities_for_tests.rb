@@ -78,3 +78,7 @@ def page_from_template( fn, binding )
 end
 
 
+def hex_wire_up(hex, left, right, left_param)
+  hex_app = hex.new( right.new )
+  left.new( hex_app, left_param )
+end

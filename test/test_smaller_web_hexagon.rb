@@ -4,12 +4,15 @@ require_relative '../test/utilities_for_tests'
 class TestRequests < Test::Unit::TestCase
   attr_accessor :app
 
+
   def test_runs_via_Rack_adapter # just check hexagon integrity, not a data check
     p __method__
 
     viewsFolder = "../src/views/"
+   # @app = hex_wire_up(Smaller_web_hexagon, Smaller_web_hexagon_via_rack, Nul_persister, viewsFolder={})
     hex_app = Smaller_web_hexagon.new( Nul_persister.new )
     @app = Smaller_web_hexagon_via_rack.new( hex_app, viewsFolder )
+    p app
 
     hex_out = {
         out_action:   "result_view",
@@ -17,7 +20,6 @@ class TestRequests < Test::Unit::TestCase
         rate:   1.1,
         result: (100)*(1.1)
     }
-
 
     response = request_via_rack_adapter_without_server( app, "GET", '/100')
     p response.body.should == page_from_template( viewsFolder + "result_view.erb" , binding )
