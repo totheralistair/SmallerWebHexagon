@@ -1,0 +1,31 @@
+--- !ruby/object:Ml_RackRequest
+myRequest: !ruby/object:Rack::Request
+  env:
+    rack.version:
+    - 1
+    - 2
+    rack.input: Add=Add&MuffinContents=less+chickens
+    rack.errors: ''
+    rack.multithread: true
+    rack.multiprocess: true
+    rack.run_once: false
+    REQUEST_METHOD: POST
+    SERVER_NAME: example.org
+    SERVER_PORT: '80'
+    QUERY_STRING: ''
+    PATH_INFO: "/ignored"
+    rack.url_scheme: http
+    HTTPS: 'off'
+    SCRIPT_NAME: ''
+    CONTENT_LENGTH: '36'
+    CONTENT_TYPE: application/x-www-form-urlencoded
+    rack.request.query_string: ''
+    rack.request.query_hash: {}
+    rack.request.form_input: Add=Add&MuffinContents=less+chickens
+    rack.request.form_hash:
+      Add: Add
+      MuffinContents: less chickens
+    rack.request.form_vars: Add=Add&MuffinContents=less+chickens
+  params:
+    Add: Add
+    MuffinContents: less chickens

@@ -1,0 +1,31 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    diff-lcs (1.2.4)
+    erubis (2.7.0)
+    rack (1.5.2)
+    rack-protection (1.5.0)
+      rack
+    rack-test (0.6.2)
+      rack (>= 1.0)
+    rspec-expectations (2.14.0)
+      diff-lcs (>= 1.1.3, < 2.0)
+    sinatra (1.4.3)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
+    test-unit (2.5.5)
+    tilt (1.4.1)
+
+PLATFORMS
+  java
+  ruby
+  x86-mingw32
+
+DEPENDENCIES
+  erubis
+  rack
+  rack-test
+  rspec-expectations
+  sinatra
+  test-unit
