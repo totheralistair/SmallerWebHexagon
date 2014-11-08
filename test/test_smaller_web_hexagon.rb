@@ -1,4 +1,6 @@
 require_relative '../test/utilities_for_tests'
+require_relative '../src/html_from_templatefile'
+
 
 
 class TestRequests < Test::Unit::TestCase
@@ -9,10 +11,9 @@ class TestRequests < Test::Unit::TestCase
     p __method__
 
     viewsFolder = "../src/views/"
-   # @app = hex_wire_up(Smaller_web_hexagon, Smaller_web_hexagon_via_rack, Nul_persister, viewsFolder={})
-    hex_app = Smaller_web_hexagon.new( Nul_persister.new )
-    @app = Smaller_web_hexagon_via_rack.new( hex_app, viewsFolder )
-    p app
+    app = Smaller_web_hexagon.new_w_driver(
+        Smaller_web_hexagon_via_rack, viewsFolder
+    )
 
     hex_out = {
         out_action:   "result_view",
@@ -22,60 +23,24 @@ class TestRequests < Test::Unit::TestCase
     }
 
     response = request_via_rack_adapter_without_server( app, "GET", '/100')
-    p response.body.should == page_from_template( viewsFolder + "result_view.erb" , binding )
+    response.body.should == htmlpage_from_templatefile( viewsFolder + "result_view.erb" , binding )
   end
 
 
-  def test_00_emptyDB_is_special_case
+  def test_00_hardcoded_result_works
     p __method__
 
-    @app = Smaller_web_hexagon.new( Nul_persister.new )
+    @app = Smaller_web_hexagon.new
 
-    sending_expect "GET", '/aaa', {} ,
+    sending_expect "GET", '/100', {} ,
                    {
-                       out_action:  "result_view"
+                       out_action:   "result_view",
+                       value:  100,
+                       rate:   1.1,
+                       result: (100)*(1.1)
                    }
   end
 
-
-  def test_01_posts_return_contents
-    p __method__
-
-    @app = Smaller_web_hexagon.new( Nul_persister.new )
-
-    sending_expect "POST", '/ignored',{ "Add"=>"Add", "MuffinContents"=>"a" },
-                    {
-                        out_action:   "GET_named_page",
-                        muffin_id:   0,
-                        muffin_body: "a"
-                    }
-
-    sending_expect "POST", '/stillignored',{ "Add"=>"Add", "MuffinContents"=>"b" },
-                    {
-                        out_action:   "GET_named_page",
-                        muffin_id:   1,
-                        muffin_body: "b"
-                    }
-
-    sending_expect "GET", '/0', {},
-              {
-                  out_action:   "GET_named_page",
-                  muffin_id:   0,
-                  muffin_body: "a"
-              }
-
-    sending_expect "GET", '/1', {},
-                    {
-                        out_action:   "GET_named_page",
-                        muffin_id:   1,
-                        muffin_body: "b"
-                    }
-
-    sending_expect "GET", '/2', {},
-                    {
-                        out_action:   "404"
-                    }
-  end
 
 
   def test_02_requests_serialize_and_reconstitute_back_and_forth

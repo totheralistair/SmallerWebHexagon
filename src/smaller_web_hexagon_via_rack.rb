@@ -19,8 +19,6 @@ class Smaller_web_hexagon_via_rack
     request = Ml_RackRequest.new( env ) # hide some of the 'Rack'ness
     hex_out = @app.handle( request )   # call the hexagonal API directly, get struct back
 
-    p hex_out
-
     template_fn = @viewsFolder + hex_out[:out_action] + ".erb"
     page = htmlpage_from_templatefile( template_fn , binding )
 
