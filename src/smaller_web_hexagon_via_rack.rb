@@ -20,7 +20,7 @@ class Smaller_web_hexagon_via_rack
     hex_out = @app.handle( request )   # call the hexagonal API directly, get struct back
 
     template_fn = @viewsFolder + hex_out[:out_action] + ".erb"
-    page = htmlpage_from_templatefile( template_fn , binding )
+    page = html_from_templatefile( template_fn , binding )
 
     response = Rack::Response.new
     response.write( page )

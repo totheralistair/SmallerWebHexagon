@@ -4,7 +4,7 @@ require 'test/unit'
 require 'erubis'
 require_relative '../src/smaller_web_hexagon.rb'
 require_relative '../src/smaller_web_hexagon_via_rack.rb'
-require_relative '../src/persisters'
+require_relative '../src/raters'
 require_relative '../test/utilities_for_tests'
 
 

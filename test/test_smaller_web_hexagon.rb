@@ -7,7 +7,7 @@ class TestRequests < Test::Unit::TestCase
   attr_accessor :app
 
 
-  def test_runs_via_Rack_adapter # just check hexagon integrity, not a data check
+  def test_runs_via_Rack_adapter # just check hexagon integrity w Rack
     p __method__
 
     viewsFolder = "../src/views/"
@@ -23,15 +23,14 @@ class TestRequests < Test::Unit::TestCase
     }
 
     response = request_via_rack_adapter_without_server( app, "GET", '/100')
-    response.body.should == htmlpage_from_templatefile( viewsFolder + "result_view.erb" , binding )
+    response.body.should == html_from_templatefile( viewsFolder + "result_view.erb" , binding )
   end
 
 
-  def test_00_hardcoded_result_works
+  def test_00_works_w_no_rater
     p __method__
 
     @app = Smaller_web_hexagon.new
-
     sending_expect "GET", '/100', {} ,
                    {
                        out_action:   "result_view",
@@ -55,7 +54,7 @@ class TestRequests < Test::Unit::TestCase
   def test_03_can_reload_history_from_array_and_continue
     p __method__
 
-    @app = Smaller_web_hexagon.new( Nul_persister.new )
+    @app = Smaller_web_hexagon.new( Nul_rater.new )
 
     r0 = new_ml_request('POST', '/ignored',{ "Add"=>"Add", "MuffinContents"=>"apple" })
     app.dangerously_restart_with_history [ r0 ]
@@ -72,7 +71,7 @@ class TestRequests < Test::Unit::TestCase
   def test_04_can_run_history_to_from_strings_and_files
     p __method__
 
-    @app = Smaller_web_hexagon.new( Nul_persister.new )
+    @app = Smaller_web_hexagon.new( Nul_rater.new )
 
     # 1st, fake a history in a file:
     r0 = new_ml_request('POST', '/ignored',{ "Add"=>"Add", "MuffinContents"=>"less chickens" })
