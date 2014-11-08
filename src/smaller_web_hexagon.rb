@@ -7,27 +7,27 @@ class Smaller_web_hexagon
 # the rates "database" mechanism is the right, needs no params
 # the app itself just multiplies input * rate(as a function of rate), outputs it
 
-  def self.new_w_driver( user_adapter, viewsFolder )
-    # left side of hexagon
-    hex = self.new
-    app = Smaller_web_hexagon_via_rack.new( hex, viewsFolder )
-  end
+  # def self.using_driver( user_adapter, viewsFolder )
+  #   # left side of hexagon
+  #   hex = self.new
+  #   app = Smaller_web_hexagon_via_rack.new( hex, viewsFolder )
+  # end
 
 
   def initialize
     @rater = Nul_rater.new
   end
 
-  def use_rater rater
-    # this is the right side of the hexagon
+  def use_rater rater    # right side of the hexagon
     @rater = rater
   end
+
 
 # invoke 'handle(request)' directly from your test code or (eg Rack) web handler.
 
   def handle( request ) # note: all 'handle's return 'ml_response' in a chain
     value = request.name_from_path=="" ? 0 : request.id_from_path
-    rate = 1.1 #hardcode for now 10% cuz it's easy
+    rate = @rater.rate( value )
     result = value * @rater.rate( value )
 
     out = {
