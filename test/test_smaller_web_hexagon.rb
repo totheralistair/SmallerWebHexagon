@@ -6,7 +6,7 @@ require_relative '../src/html_from_templatefile'
 class TestRequests < Test::Unit::TestCase
   attr_accessor :app
 
-
+  #================================
   def test_runs_via_Rack_adapter # just check hexagon integrity w Rack
     p __method__
 
@@ -27,6 +27,7 @@ class TestRequests < Test::Unit::TestCase
   end
 
 
+  #================================
   def test_00_works_w_no_rater
     p __method__
 
@@ -42,6 +43,7 @@ class TestRequests < Test::Unit::TestCase
 
 
 
+  #================================
   def test_01_works_w_in_code_rater
     p __method__
 
@@ -70,6 +72,7 @@ class TestRequests < Test::Unit::TestCase
 
 
 
+  #================================
   def test_03_works_from_file_rater
     p __method__
 
@@ -95,6 +98,8 @@ class TestRequests < Test::Unit::TestCase
                    }
 
   end
+
+  #===== that's all folks, nothing more to see, move along now =====
 
 end
 

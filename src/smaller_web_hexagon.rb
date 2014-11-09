@@ -3,30 +3,28 @@
 
 class Smaller_web_hexagon
 # this hexagon has one left port and one right
-# the user/test/web side is the left, needs a param ViewsFolder to work (ugh)
-# the rates "database" mechanism is the right, needs no params
-# the app itself just multiplies input * rate(as a function of rate), outputs it
-
-  # def self.using_driver( user_adapter, viewsFolder )
-  #   # left side of hexagon
-  #   hex = self.new
-  #   app = Smaller_web_hexagon_via_rack.new( hex, viewsFolder )
-  # end
+# the user/test/web side is the left
+# the rates "database" mechanism is the right
+# the app itself just returns input * rate(as a function of rate)
 
 
   def initialize
     @rater = Nul_rater.new
   end
 
+# this is the "configurable dependency" part...
   def use_rater rater    # right side of the hexagon
     @rater = rater
   end
 
 
-# invoke 'handle(request)' directly from your test code or (eg Rack) web handler.
+# invoke 'handle(request)' directly from your test code or from a web adapter.
 
-  def handle( request ) # note: all 'handle's return 'ml_response' in a chain
-    value = request.name_from_path=="" ? 0 : request.id_from_path
+  def handle( request )
+
+    value = request.path_contents == "" ?
+        0 :
+        request.id_from_path
     rate = @rater.rate( value )
     result = value * @rater.rate( value )
 
@@ -36,6 +34,7 @@ class Smaller_web_hexagon
         rate:   rate,
         result: result
     }
+
   end
 
 end
