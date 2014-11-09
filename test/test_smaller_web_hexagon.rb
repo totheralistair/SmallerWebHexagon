@@ -73,69 +73,28 @@ class TestRequests < Test::Unit::TestCase
   def test_03_works_from_file_rater
     p __method__
 
-    @app = Smaller_web_hexagon.new( Nul_rater.new )
-    broken here
+    @app = Smaller_web_hexagon.new
+    @app.use_rater File_rater.new( fn = "file_rater.txt" )
+
+    value, rate = 10, 1.00
+    sending_expect "GET", "/#{value}", {} ,
+                   {
+                       out_action:   "result_view",
+                       value:  value,
+                       rate:   rate,
+                       result: (value)*(rate)
+                   }
+
+    value, rate = 100, 2.0
+    sending_expect "GET", "/#{value}", {} ,
+                   {
+                       out_action:   "result_view",
+                       value:  value,
+                       rate:   rate,
+                       result: (value)*(rate)
+                   }
 
   end
-
-  #
-  #
-  # def test_04_can_run_history_to_from_strings_and_files
-  #   p __method__
-  #
-  #   @app = Smaller_web_hexagon.new( Nul_rater.new )
-  #
-  #   # 1st, fake a history in a file:
-  #   r0 = new_ml_request('POST', '/ignored',{ "Add"=>"Add", "MuffinContents"=>"less chickens" })
-  #   array_out_to_file( [ r0.to_yaml ], history_in_file='file_rater.txt' )
-  #
-  #   # see if that reads OK:
-  #   requests = requests_from_yaml_stream2( File.open( history_in_file) )
-  #   app.dangerously_restart_with_history requests
-  #   sending_expect "GET", '/0', {},
-  #                  {
-  #                      out_action:   "GET_named_page",
-  #                      muffin_id:   0,
-  #                      muffin_body: "less chickens"
-  #                  }
-  #
-  #   # then add to the history in the ordinary way
-  #   sending_expect 'POST', '/ignored',{ "Add"=>"Add", "MuffinContents"=>"more chickens" } ,
-  #                    {
-  #                        out_action:   "GET_named_page",
-  #                        muffin_id:   1,
-  #                        muffin_body: "more chickens"
-  #                    }
-  #
-  #   yamld_history = yaml_my app.dangerously_all_posts     # notice I didn't check it yet. lazy
-  #
-  #   # finally, add to the history using faked-up string / StringIO, see if that works:
-  #   r2 = new_ml_request('POST', '/ignored',{ "Add"=>"Add", "MuffinContents"=>"end of chickens" })
-  #   history_in_string = array_out_to_string ( yamld_history << r2.to_yaml )
-  #
-  #   requests = requests_from_yaml_stream2( StringIO.new( history_in_string) )
-  #   app.dangerously_restart_with_history requests
-  #
-  #   sending_expect "GET", '/1', {},
-  #                  {
-  #                      out_action:   "GET_named_page",
-  #                      muffin_id:   1,
-  #                      muffin_body: "more chickens"
-  #                  }
-  #
-  #   sending_expect "GET", '/2', {},
-  #                  {
-  #                      out_action:   "GET_named_page",
-  #                      muffin_id:   2,
-  #                      muffin_body: "end of chickens"
-  #                  }
-  #
-  #   sending_expect "GET", '/3', {},
-  #                  {
-  #                      out_action:   "404"
-  #                  }
-  #   # if that all works, loading/unloading/faking history w arrays/strings/files all work :-)
-  # end
 
 end
 

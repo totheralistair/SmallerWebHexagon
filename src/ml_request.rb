@@ -1,20 +1,4 @@
 require 'rack'
-require 'yaml'
-
-
-def yaml_my requests
-  out = Array.new
-  requests.each {|req| out << req.to_yaml }
-  out
-end
-
-def requests_from_yaml_stream(stream)
-  requests = YAML::load_documents( stream ) { |req|
-    req.clean_from_yaml
-  }
-end
-
-
 
 
 

@@ -22,21 +22,25 @@ end
 
 
 class File_rater
+
   def initialize fn
     @myFn = fn
-    File.open( @myFn, 'r') do |f| f end
-    @rates = [ [100, 1.0], [200, 2.0]]
+    @rates = []
+    File.open(fn) do |f|
+      f.each_line do |line|
+        @rates << line.split.map(&:to_f)
+      end
+    end
   end
 
   def rate value
-    @rates.each do | break_and_rate, index |
-      if value <  break_and_rate[0] do
-        out = break_and_rate[1]
-        return
-      end
-end
-
+    case
+      when value >= @rates[0][0] && value < @rates[1][0]
+        rate = @rates[0][1]
+      when value >= 100
+        rate = @rates[1][1]
     end
   end
 
 end
+
