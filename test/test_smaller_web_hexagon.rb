@@ -70,19 +70,13 @@ class TestRequests < Test::Unit::TestCase
 
 
 
-  # def test_03_can_reload_history_from_array_and_continue
-  #   p __method__
-  #
-  #   @app = Smaller_web_hexagon.new( Nul_rater.new )
-  #
-  #   r0 = new_ml_request('POST', '/ignored',{ "Add"=>"Add", "MuffinContents"=>"apple" })
-  #   app.dangerously_restart_with_history [ r0 ]
-  #
-  #   r1 = new_ml_request('POST', '/ignored',{ "Add"=>"Add", "MuffinContents"=>"banaba" })
-  #   app.handle r1
-  #
-  #   app.dangerously_all_posts.should == [ r0, r1 ]
-  # end
+  def test_03_works_from_file_rater
+    p __method__
+
+    @app = Smaller_web_hexagon.new( Nul_rater.new )
+    broken here
+
+  end
 
   #
   #
@@ -93,7 +87,7 @@ class TestRequests < Test::Unit::TestCase
   #
   #   # 1st, fake a history in a file:
   #   r0 = new_ml_request('POST', '/ignored',{ "Add"=>"Add", "MuffinContents"=>"less chickens" })
-  #   array_out_to_file( [ r0.to_yaml ], history_in_file='mlhistory.txt' )
+  #   array_out_to_file( [ r0.to_yaml ], history_in_file='file_rater.txt' )
   #
   #   # see if that reads OK:
   #   requests = requests_from_yaml_stream2( File.open( history_in_file) )

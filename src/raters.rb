@@ -21,13 +21,22 @@ class In_code_rater
 end
 
 
-# class File_persister
-#   def initialize fn
-#     @myFn = fn
-#     remove_file fn
-#   end
-#
-#   def handle_new_post p
-#     File.open( @myFn, 'a') do |f| f << p.to_yaml end
-#   end
-# end
+class File_rater
+  def initialize fn
+    @myFn = fn
+    File.open( @myFn, 'r') do |f| f end
+    @rates = [ [100, 1.0], [200, 2.0]]
+  end
+
+  def rate value
+    @rates.each do | break_and_rate, index |
+      if value <  break_and_rate[0] do
+        out = break_and_rate[1]
+        return
+      end
+end
+
+    end
+  end
+
+end
