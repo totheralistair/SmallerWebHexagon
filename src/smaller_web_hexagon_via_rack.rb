@@ -14,7 +14,7 @@ class Smaller_web_hexagon_via_rack
 
 
   def call(env) # hooks into the Rack Request chain
-    p env
+
     request = Rack::Request.new( env )
     hex_out = @app.handle( request )   # call the hexagonal API directly, get struct back
 

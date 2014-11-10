@@ -56,12 +56,12 @@ class TestRequests < Test::Unit::TestCase
 
     viewsFolder = "../src/views/"
     hex = Smaller_web_hexagon.new
-    app = Smaller_web_hexagon_via_rack.new( hex,"../src/views/" )
+    app = Smaller_web_hexagon_via_rack.new( hex, viewsFolder )
 
     request = Rack::MockRequest.new(app)
     response = request.request("GET", '/100') # sends the req through the Rack call(env) chain
 
-    hex_out = {
+    hex_out = {               # this is the expected hash returned
         out_action:   "result_view",
         value:  100,
         rate:   1.1,

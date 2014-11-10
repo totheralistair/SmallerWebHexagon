@@ -1,7 +1,6 @@
 # Welcome to Smallerwebhexagon, the simple web hexagon implementation
 # Alistair Cockburn and a couple of really nice friends
 
-#require_relative '../src/utilities_for_smaller_hexagon'
 
 class Smaller_web_hexagon
 # this hexagon has one left port and one right
@@ -26,7 +25,7 @@ class Smaller_web_hexagon
 
     value =  path_as_number(request)
     rate = @rater.rate( value )
-    result = value * @rater.rate( value )
+    result = value * rate
 
     out = {
         out_action:   "result_view",

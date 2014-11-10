@@ -3,6 +3,7 @@
 #  - simply a constant (the default one)
 #  - a variable in-code one that can be used when the db is down
 #  - one w the table stored in a file (or db, but I only know files so far)
+# note: I'm making them all give different rates, so that mistakes show up easier
 
 
 class Nul_rater
