@@ -1,6 +1,6 @@
 # a Rater produces a multiplier ("rate") given a value
 # here are three kinds of raters:
-#  - simply a constant (the default unspecified one)
+#  - simply a constant (the default one)
 #  - a variable in-code one that can be used when the db is down
 #  - one w the table stored in a file (or db, but I only know files so far)
 

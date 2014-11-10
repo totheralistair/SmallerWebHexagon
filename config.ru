@@ -1,4 +1,5 @@
-# Here is how to go through Rackup
+# run the Smaller Web Hexagon from a browser
+
 require './src/smaller_web_hexagon_via_rack'
 require './src/raters'
 
