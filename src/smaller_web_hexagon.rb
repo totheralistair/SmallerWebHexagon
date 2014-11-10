@@ -5,7 +5,7 @@ class Smaller_web_hexagon
 # this hexagon has one left port and one right
 # the user/test/web side is the left
 # the rates "database" mechanism is the right
-# the app itself just returns input * rate(as a function of rate)
+# the app itself just returns value * rate(as a function of value)
 
 
   def initialize

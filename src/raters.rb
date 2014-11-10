@@ -28,7 +28,6 @@ end
 class File_rater
 
   def initialize fn
-    @myFn = fn
     @rates = []
     File.open(fn) do |f|
       f.each_line do |line|
@@ -37,7 +36,7 @@ class File_rater
     end
   end
 
-  def rate value
+  def rate value # ugly code but I only need to know it works
     case
       when value >= @rates[0][0] && value < @rates[1][0]
         rate = @rates[0][1]

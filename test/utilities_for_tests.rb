@@ -1,12 +1,3 @@
-require 'rack/test'
-require 'rspec/expectations'
-require 'test/unit'
-require 'erubis'
-require_relative '../src/smaller_web_hexagon.rb'
-require_relative '../src/smaller_web_hexagon_via_rack.rb'
-require_relative '../src/raters'
-require_relative '../test/utilities_for_tests'
-
 
 def sending_expect method, path, params, expectedResult
   sending_r_expect( new_ml_request( method, path, params ), expectedResult )
@@ -36,9 +27,3 @@ def request_via_rack_adapter_without_server( app, method, path, params={} ) # ap
   request = Rack::MockRequest.new(app)
   request.request(method, path, {:params=>params}) # sends the req through the Rack call(env) chain
 end
-
-
-# def page_from_template( fn, binding )
-#   pageTemplate = Erubis::Eruby.new(File.open( fn, 'r').read)
-#   pageTemplate.result(binding)
-# end

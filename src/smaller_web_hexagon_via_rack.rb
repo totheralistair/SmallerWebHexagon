@@ -5,7 +5,6 @@ require_relative '../src/html_from_templatefile'
 
 
 # Hex adapter to Smallerwebhexagon using Rack for web-type I/O
-# is also tied to Erubis, which may need to be changed one day
 
 class Smaller_web_hexagon_via_rack
 

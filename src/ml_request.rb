@@ -5,8 +5,6 @@ class Ml_RackRequest
 
   def initialize( env )
     @myRequest = Rack::Request.new( env )
-    @myRequest.params # calling params has "side effect" of changing the Request! :(.
-    # better to do it now and save later surprises :-(
   end
 
   def thePath ;  @myRequest.path ; end
