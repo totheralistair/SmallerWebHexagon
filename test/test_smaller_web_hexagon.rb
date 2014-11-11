@@ -19,7 +19,7 @@ class TestRequests < Test::Unit::TestCase
   def test_01_works_w_in_code_rater
     p __method__
 
-    @app = Smaller_web_hexagon.new In_code_rater.new
+    @app = Smaller_web_hexagon.new  In_code_rater.new
 
     value_should_produce_rate 100, 1.01
     value_should_produce_rate 200, 1.5
@@ -28,10 +28,10 @@ class TestRequests < Test::Unit::TestCase
 
 
 
-  def test_03_works_from_file_rater
+  def test_02_works_from_file_rater
     p __method__
 
-    @app = Smaller_web_hexagon.new File_rater.new( "file_rater.txt" )
+    @app = Smaller_web_hexagon.new  File_rater.new( "file_rater.txt" )
 
     value_should_produce_rate 10, 1.00
     value_should_produce_rate 100, 2.0
