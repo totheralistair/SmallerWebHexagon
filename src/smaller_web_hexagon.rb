@@ -9,7 +9,6 @@
 
 class SmallerWebHexagon
 
-
   def initialize rater
     @rater = rater     # the database port needs configuring
   end
@@ -21,6 +20,3 @@ class SmallerWebHexagon
   end
 
 end
-
-
-

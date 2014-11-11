@@ -1,12 +1,10 @@
 # run the Smaller Web Hexagon from a browser
 
 require './src/smaller_web_hexagon'
-require './src/smaller_web_hexagon_via_rack'
+require './src/rack_http_adapter'
 require './src/raters'
 
 hex = SmallerWebHexagon.new(InCodeRater.new)
-app = SmallerWebHexagonViaRack.new(hex,"./src/views/")
+app = RackHttpAdapter.new(hex,"./src/views/")
 
 run app
-
-
