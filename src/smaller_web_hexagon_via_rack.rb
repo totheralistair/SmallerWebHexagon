@@ -5,7 +5,7 @@ require_relative '../src/html_from_templatefile'
 
 # Hex adapter to Smallerwebhexagon using Rack for web-type I/O
 
-class Smaller_web_hexagon_via_rack
+class SmallerWebHexagonViaRack
 
   def initialize( hex_app, viewsFolder )
     @app = hex_app

@@ -7,7 +7,7 @@
 # the app itself just returns value * rate(as a function of value)
 
 
-class Smaller_web_hexagon
+class SmallerWebHexagon
 
 
   def initialize rater

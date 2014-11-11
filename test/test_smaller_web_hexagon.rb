@@ -19,7 +19,7 @@ class TestRequests < Test::Unit::TestCase
   def test_01_works_w_in_code_rater
     p __method__
 
-    @app = Smaller_web_hexagon.new  In_code_rater.new
+    @app = SmallerWebHexagon.new  In_code_rater.new
 
     value_should_produce_rate 100, 1.01
     value_should_produce_rate 200, 1.5
@@ -31,7 +31,7 @@ class TestRequests < Test::Unit::TestCase
   def test_02_works_from_file_rater
     p __method__
 
-    @app = Smaller_web_hexagon.new  File_rater.new( "file_rater.txt" )
+    @app = SmallerWebHexagon.new  File_rater.new( "file_rater.txt" )
 
     value_should_produce_rate 10, 1.00
     value_should_produce_rate 100, 2.0
@@ -44,8 +44,8 @@ class TestRequests < Test::Unit::TestCase
     p __method__
 
     viewsFolder = "../src/views/"
-    hex = Smaller_web_hexagon.new   In_code_rater.new
-    app = Smaller_web_hexagon_via_rack.new( hex, viewsFolder )
+    hex = SmallerWebHexagon.new   In_code_rater.new
+    app = SmallerWebHexagonViaRack.new( hex, viewsFolder )
 
     request = Rack::MockRequest.new(app)
     response = request.request("GET", '/100') # sends the req through the Rack call(env) chain
