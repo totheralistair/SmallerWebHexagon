@@ -1,4 +1,5 @@
-require_relative '../src/smaller_web_hexagon_via_rack.rb'
+require_relative '../src/smaller_web_hexagon'
+require_relative '../src/rack_http_adapter'
 require_relative '../src/raters'
 require 'rack/test'
 require 'rspec/expectations'
@@ -15,37 +16,32 @@ require 'test/unit'
 class TestRequests < Test::Unit::TestCase
   attr_accessor :app
 
-
   def test_01_works_w_in_code_rater
     p __method__
 
-    @app = Smaller_web_hexagon.new  In_code_rater.new
+    @app = SmallerWebHexagon.new(InCodeRater.new)
 
     value_should_produce_rate 100, 1.01
     value_should_produce_rate 200, 1.5
   end
 
 
-
-
   def test_02_works_from_file_rater
     p __method__
 
-    @app = Smaller_web_hexagon.new  File_rater.new( "file_rater.txt" )
+    @app = SmallerWebHexagon.new(FileRater.new( "file_rater.txt" ))
 
     value_should_produce_rate 10, 1.00
     value_should_produce_rate 100, 2.0
   end
 
 
-
-
   def test_runs_via_Rack_adapter
     p __method__
 
     viewsFolder = "../src/views/"
-    hex = Smaller_web_hexagon.new   In_code_rater.new
-    app = Smaller_web_hexagon_via_rack.new( hex, viewsFolder )
+    hex = SmallerWebHexagon.new (InCodeRater.new)
+    app = RackHttpAdapter.new( hex, viewsFolder )
 
     request = Rack::MockRequest.new(app)
     response = request.request("GET", '/100') # sends the req through the Rack call(env) chain
@@ -68,5 +64,3 @@ class TestRequests < Test::Unit::TestCase
   end
 
 end
-
-
