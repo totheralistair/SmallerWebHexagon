@@ -5,7 +5,7 @@
 # note: I'm making them  give different rates, so that mistakes show up easier
 
 
-class In_code_rater
+class InCodeRater
 
   def rate value
     case
@@ -19,7 +19,7 @@ class In_code_rater
 end
 
 
-class File_rater
+class FileRater
 
   def initialize fn
     @rates = []
