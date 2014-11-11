@@ -16,9 +16,18 @@ class Smaller_web_hexagon_via_rack
   def call(env) # hooks into the Rack Request chain
 
     request = Rack::Request.new( env )
-    hex_out = @app.handle( request )   # call the hexagonal API directly, get struct back
+    value =  path_as_number(request)
 
-    template_fn = @viewsFolder + hex_out[:out_action] + ".erb"
+    rate, result = @app.rate_and_result  value
+
+    out = {
+        out_action:   "result_view",
+        value:  value,
+        rate:   rate,
+        result: result
+    }
+
+    template_fn = @viewsFolder + out[:out_action] + ".erb"
     page = html_from_templatefile( template_fn , binding )
 
     response = Rack::Response.new
@@ -26,5 +35,18 @@ class Smaller_web_hexagon_via_rack
     response.finish
   end
 
+
 end
+
+# ==== utilities for reading a Rack Request ====
+
+def path_as_number( request ) ;  number_or_zero( path_contents(request) )  ;  end
+
+def path_contents( request );  request.path[ 1..request.path.size ] ;  end
+
+def number_or_zero( s ) # convert string to a number, zero if not a number
+  i= s.to_i
+  i.to_s == s ? i : 0
+end
+
 
