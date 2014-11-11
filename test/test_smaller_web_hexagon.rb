@@ -1,4 +1,5 @@
-require_relative '../src/smaller_web_hexagon_via_rack.rb'
+require_relative '../src/smaller_web_hexagon'
+require_relative '../src/smaller_web_hexagon_via_rack'
 require_relative '../src/raters'
 require 'rack/test'
 require 'rspec/expectations'
