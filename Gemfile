@@ -1,6 +1,9 @@
 source 'http://rubygems.org'
+
 gem 'rack'
-gem 'rack-test'
-gem 'rspec-expectations'
-gem 'test-unit'
 gem 'erubis'
+
+group :development, :test do
+  gem 'rspec'
+  gem 'rack-test'
+end
