@@ -11,9 +11,7 @@ class RackHttpAdapter
     @viewsFolder = viewsFolder
   end
 
-
-  def call(env) # hooks into the Rack Request chain
-
+  def call( env ) # hooks into the Rack Request chain
     request = Rack::Request.new( env )
     value =  path_as_number(request)
 
@@ -38,16 +36,16 @@ class RackHttpAdapter
 
   # ==== utilities for reading a Rack Request ====
 
-  def path_as_number(request)
-    number_or_zero( path_contents(request) )
+  def path_as_number( request )
+    number_or_zero( path_contents( request ) )
   end
 
-  def path_contents(request)
+  def path_contents( request )
     request.path[ 1..request.path.size ]
   end
 
   def number_or_zero( s ) # convert string to a number, zero if not a number
-    i= s.to_i
+    i = s.to_i
     i.to_s == s ? i : 0
   end
 
