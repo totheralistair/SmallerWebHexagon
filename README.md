@@ -16,7 +16,5 @@ The db port looks up the rate in a database, either in-the-code db, or from a fi
 
 The startup decides how the wiring goes.
 
-Run test_smaller_web_hexagon to run the tests.
+Run `ruby test_smaller_web_hexagon.rb` to run the tests (must be inside the `test` folder).
 Run `rackup config.ru` to get the web UI on port 9292
-
-
