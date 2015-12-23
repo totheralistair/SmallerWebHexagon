@@ -3,3 +3,4 @@
 * Dave Alvarez Navarro
 * [Jen Diamond](https://github.com/jendiamond)
 * [Pat Maddox](https://patmaddox.com)
+* [Felipe Dornelas](http://felipedornelas.com)
