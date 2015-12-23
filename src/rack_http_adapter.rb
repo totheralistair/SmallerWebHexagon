@@ -6,9 +6,9 @@ require_relative '../src/html_from_templatefile'
 
 class RackHttpAdapter
 
-  def initialize( hex_app, viewsFolder )
+  def initialize( hex_app, views_folder )
     @app = hex_app
-    @viewsFolder = viewsFolder
+    @views_folder = views_folder
   end
 
 
@@ -26,7 +26,7 @@ class RackHttpAdapter
         result: result
     }
 
-    template_fn = @viewsFolder + out[:out_action] + ".erb"
+    template_fn = @views_folder + out[:out_action] + ".erb"
     page = html_from_templatefile( template_fn , binding )
 
     response = Rack::Response.new
