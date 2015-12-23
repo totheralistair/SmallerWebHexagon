@@ -1,4 +1,5 @@
 require 'rack'
+require 'pathname'
 require_relative '../src/html_from_template_file'
 
 
@@ -23,8 +24,8 @@ class RackHttpAdapter
         result: result
     }
 
-    template_file_path = @views_folder + out[:out_action] + '.erb'
-    page = html_from_template_file(template_file_path , binding)
+    template_path = Pathname.new(@views_folder).join(out[:out_action]).sub_ext('.erb')
+    page = html_from_template_file(template_path , binding)
 
     response = Rack::Response.new
     response.write(page)
