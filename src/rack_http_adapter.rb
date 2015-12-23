@@ -17,13 +17,13 @@ class RackHttpAdapter
     rate, result = @app.rate_and_result  value
 
     out = {
-        out_action:   "result_view",
+        out_action:   'result_view',
         value:  value,
         rate:   rate,
         result: result
     }
 
-    template_file_path = @views_folder + out[:out_action] + ".erb"
+    template_file_path = @views_folder + out[:out_action] + '.erb'
     page = html_from_template_file(template_file_path , binding)
 
     response = Rack::Response.new

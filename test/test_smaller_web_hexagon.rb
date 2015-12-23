@@ -29,7 +29,7 @@ class TestRequests < Test::Unit::TestCase
   def test_it_works_with_file_rater
     p __method__
 
-    @app = SmallerWebHexagon.new(FileRater.new("file_rater.txt"))
+    @app = SmallerWebHexagon.new(FileRater.new('file_rater.txt'))
 
     value_should_produce_rate 10, 1.00
     value_should_produce_rate 100, 2.0
@@ -39,20 +39,20 @@ class TestRequests < Test::Unit::TestCase
   def test_runs_via_rack_adapter
     p __method__
 
-    views_folder = "../src/views/"
+    views_folder = '../src/views/'
     hex = SmallerWebHexagon.new (InCodeRater.new)
     app = RackHttpAdapter.new(hex, views_folder)
 
     request = Rack::MockRequest.new(app)
-    response = request.request("GET", '/100') # sends the req through the Rack call(env) chain
+    response = request.request('GET', '/100') # sends the req through the Rack call(env) chain
 
     out = {               # expected values
-        out_action:   "result_view",
+        out_action:   'result_view',
         value:  100,
         rate:   1.01,
         result: (100)*(1.01)
     }
-    response.body.should == html_from_template_file(views_folder + "result_view.erb" , binding)
+    response.body.should == html_from_template_file(views_folder + 'result_view.erb' , binding)
   end
 
 
