@@ -3,7 +3,6 @@ require_relative '../src/html_from_template_file'
 
 
 # Primary adapter to SmallerWebHexagon, using Rack for web-type I/O
-
 class RackHttpAdapter
 
   def initialize(hex_app, views_folder)
@@ -11,9 +10,7 @@ class RackHttpAdapter
     @views_folder = views_folder
   end
 
-
   def call(env) # hooks into the Rack Request chain
-
     request = Rack::Request.new(env)
     value =  path_as_number(request)
 
@@ -46,7 +43,8 @@ class RackHttpAdapter
     request.path[ 1..request.path.size ]
   end
 
-  def number_or_zero(s) # convert string to a number, zero if not a number
+ # converts string to a number, zero if not a number
+  def number_or_zero(s)
     i= s.to_i
     i.to_s == s ? i : 0
   end

@@ -40,4 +40,3 @@ class FileRater
   end
 
 end
-
