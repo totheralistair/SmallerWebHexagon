@@ -26,8 +26,8 @@ class RackHttpAdapter
         result: result
     }
 
-    template_fn = @views_folder + out[:out_action] + ".erb"
-    page = html_from_templatefile( template_fn , binding )
+    template_file_path = @views_folder + out[:out_action] + ".erb"
+    page = html_from_templatefile( template_file_path , binding )
 
     response = Rack::Response.new
     response.write( page )
