@@ -39,9 +39,9 @@ class TestRequests < Test::Unit::TestCase
   def test_runs_via_rack_adapter
     p __method__
 
-    viewsFolder = "../src/views/"
+    views_folder = "../src/views/"
     hex = SmallerWebHexagon.new (InCodeRater.new)
-    app = RackHttpAdapter.new(hex, viewsFolder)
+    app = RackHttpAdapter.new(hex, views_folder)
 
     request = Rack::MockRequest.new(app)
     response = request.request("GET", '/100') # sends the req through the Rack call(env) chain
@@ -52,7 +52,7 @@ class TestRequests < Test::Unit::TestCase
         rate:   1.01,
         result: (100)*(1.01)
     }
-    response.body.should == html_from_template_file(viewsFolder + "result_view.erb" , binding)
+    response.body.should == html_from_template_file(views_folder + "result_view.erb" , binding)
   end
 
 
