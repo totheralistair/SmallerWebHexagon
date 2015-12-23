@@ -16,7 +16,7 @@ require 'test/unit'
 class TestRequests < Test::Unit::TestCase
   attr_accessor :app
 
-  def test_01_works_w_in_code_rater
+  def test_it_works_with_in_code_rater
     p __method__
 
     @app = SmallerWebHexagon.new(InCodeRater.new)
@@ -26,7 +26,7 @@ class TestRequests < Test::Unit::TestCase
   end
 
 
-  def test_02_works_from_file_rater
+  def test_it_works_with_file_rater
     p __method__
 
     @app = SmallerWebHexagon.new(FileRater.new("file_rater.txt"))
@@ -36,7 +36,7 @@ class TestRequests < Test::Unit::TestCase
   end
 
 
-  def test_runs_via_Rack_adapter
+  def test_runs_via_rack_adapter
     p __method__
 
     viewsFolder = "../src/views/"
