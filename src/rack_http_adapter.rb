@@ -1,5 +1,5 @@
 require 'rack'
-require_relative '../src/html_from_templatefile'
+require_relative '../src/html_from_template_file'
 
 
 # Primary adapter to SmallerWebHexagon, using Rack for web-type I/O
@@ -27,7 +27,7 @@ class RackHttpAdapter
     }
 
     template_file_path = @views_folder + out[:out_action] + ".erb"
-    page = html_from_templatefile( template_file_path , binding )
+    page = html_from_template_file( template_file_path , binding )
 
     response = Rack::Response.new
     response.write( page )

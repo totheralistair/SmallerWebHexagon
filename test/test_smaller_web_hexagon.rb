@@ -52,7 +52,7 @@ class TestRequests < Test::Unit::TestCase
         rate:   1.01,
         result: (100)*(1.01)
     }
-    response.body.should == html_from_templatefile( viewsFolder + "result_view.erb" , binding )
+    response.body.should == html_from_template_file( viewsFolder + "result_view.erb" , binding )
   end
 
 
